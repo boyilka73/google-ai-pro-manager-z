@@ -32,6 +32,10 @@ scripts/release-check.sh
 
 See `docs/PHASE7_OPERATIONS.md` for deployment requirements and release criteria.
 
+## Database architecture decision
+
+The project uses SurrealDB as its single authoritative database. CozoDB is not added as a second runtime database; its useful graph and temporal concepts are mapped to SurrealQL, SurrealKV versioned reads, and explicit domain validity fields. Surrealism is optional and must pass security and performance review before adoption. See [ADR-001](docs/adr/ADR-001-surrealdb-single-core.md).
+
 ## License
 
 Apache-2.0. See `LICENSE` and `NOTICE`. Third-party dependency licenses must be reviewed before redistribution.
