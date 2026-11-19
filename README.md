@@ -14,7 +14,7 @@ A local-first Zig foundation for recording account metadata and independently ve
 
 ## Current implementation status
 
-The full Phase 1–7 source archive exists as a separate engineering artifact, but the repository's source tree is still being staged and must not be mistaken for a complete buildable release. Phase 7.1 hardening primitives now committed here include provider-observation validation, conservative retry classification, lease/fencing tests, and expanded test imports. The full workflow integration is present in the Phase 7.1 source archive but has not yet been imported into this repository.
+The full Phase 1–7 source archive exists as a separate engineering artifact, but the repository source tree is still being staged and must not be mistaken for a complete buildable release. Phase 7.1 hardening primitives and the updated workflow state machine are now committed here: provider-observation validation, per-stage retry budgets, conservative retry classification, and lease/fencing tests.
 
 **Important:** Zig compilation and live SurrealDB integration have not been verified. The authenticated local API, UI, OS secret-store adapters and supported provider-facing adapter are not implemented. Do not deploy as a production system.
 
