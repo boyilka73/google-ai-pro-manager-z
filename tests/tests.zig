@@ -20,3 +20,6 @@ test "SurrealDB repository module" { _ = @import("../src/storage/repository.zig"
 test "transactional SurrealDB workflow repository tests" { _ = @import("../src/storage/workflow_repository.zig"); }
 test "Phase 7 recovery policy" { _ = @import("../src/core/recovery_policy.zig"); }
 test "Phase 7 safe diagnostics" { _ = @import("../src/security/safe_diagnostics.zig"); }
+test "Phase 7.1 retry policy" { _ = @import("../src/core/retry_policy.zig"); }
+test "Phase 7.1 lease fencing" { _ = @import("../src/core/lease.zig"); }
+test "Phase 7.1 provider evidence" { _ = @import("../src/core/evidence.zig"); }
