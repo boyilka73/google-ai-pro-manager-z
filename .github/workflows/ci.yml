@@ -1,0 +1,26 @@
+name: Zig and SurrealDB CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  zig-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Zig 0.17.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 https://ziglang.org/download/0.17.1/zig-x86_64-linux-0.17.1.tar.xz -o "$RUNNER_TEMP/zig.tar.xz"
+          mkdir -p "$RUNNER_TEMP/zig"
+          tar -xJf "$RUNNER_TEMP/zig.tar.xz" --strip-components=1 -C "$RUNNER_TEMP/zig"
+          echo "$RUNNER_TEMP/zig" >> "$GITHUB_PATH"
+      - run: test "$(zig version)" = "0.17.1"
+      - run: zig fmt --check build.zig src tests
+      - run: zig build -Doptimize=ReleaseSafe
+      - run: zig build test
+      - run: python3 scripts/test-migration-runner.py
+      - run: for f in scripts/*.sh; do bash -n "$f"; done
