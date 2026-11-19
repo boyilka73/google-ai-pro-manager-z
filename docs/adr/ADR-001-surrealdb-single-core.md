@@ -50,7 +50,7 @@ Therefore:
 
 ### Temporal semantics
 
-Surre alKV versioned queries answer what the database stored at a past system-time point, when versioning is enabled and supported by the selected datastore. This is not automatically equivalent to CozoDB's explicit Validity semantics.
+SurrealKV versioned queries answer what the database stored at a past system-time point, when versioning is enabled and supported by the selected datastore. This is not automatically equivalent to CozoDB's explicit Validity semantics.
 
 For domain facts that have both:
 - system time (when this application learned or stored the fact), and
