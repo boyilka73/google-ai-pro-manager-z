@@ -14,9 +14,10 @@ pub const Lease = struct {
         if (duration_ms == 0 or duration_ms > 24 * 60 * 60 * 1000) return error.InvalidDuration;
         if (self.owner != 0 and now_ms < self.expires_at_ms) return error.LeaseHeld;
         if (self.fencing_token == std.math.maxInt(u64)) return error.FenceExhausted;
+        const new_expiry = std.math.add(u64, now_ms, duration_ms) catch return error.InvalidDuration;
         self.fencing_token += 1;
         self.owner = owner;
-        self.expires_at_ms = std.math.add(u64, now_ms, duration_ms) catch return error.InvalidDuration;
+        self.expires_at_ms = new_expiry;
         return self.fencing_token;
     }
 
@@ -47,4 +48,6 @@ test "expired lease cannot authorize work and invalid durations fail" {
     const token = try lease.acquire(7, 100, 10);
     try std.testing.expectError(error.StaleFence, lease.validate(7, token, 110));
     try std.testing.expectError(error.InvalidDuration, lease.acquire(8, 110, 0));
+    try std.testing.expectError(error.InvalidDuration, lease.acquire(8, std.math.maxInt(u64), 1));
+    try std.testing.expectEqual(@as(u128, 7), lease.owner);
 }
