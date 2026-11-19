@@ -2,7 +2,7 @@
 
 **Phase 7 engineering source drop — not yet a production-ready application.**
 
-A local-first Zig foundation for recording account metadata and independently verified subscription/renewal states. SurrealDB is the durable metadata store.
+A local-first Zig foundation for recording account metadata and independently verified subscription/renewal states. SurrealDB is the intended durable metadata store.
 
 ## Safety and scope
 
@@ -14,9 +14,9 @@ A local-first Zig foundation for recording account metadata and independently ve
 
 ## Current implementation status
 
-Phase 7 adds a pure recovery policy, safe diagnostic vocabulary, operations guidance and a release-check script. The complete Phase 1–6 application source tree is still being staged into this repository; this repository must not be mistaken for a complete source release yet.
+The full Phase 1–7 source archive exists as a separate engineering artifact, but the repository's source tree is still being staged and must not be mistaken for a complete buildable release. Phase 7.1 hardening primitives now committed here include provider-observation validation, conservative retry classification, lease/fencing tests, and expanded test imports. The full workflow integration is present in the Phase 7.1 source archive but has not yet been imported into this repository.
 
-**Important:** Zig compilation and live SurrealDB integration have not been verified in the authoring environment. The authenticated local API, UI, OS secret-store adapters and supported provider-facing adapter are not implemented. Do not deploy as a production system.
+**Important:** Zig compilation and live SurrealDB integration have not been verified. The authenticated local API, UI, OS secret-store adapters and supported provider-facing adapter are not implemented. Do not deploy as a production system.
 
 ## Toolchain and commands
 
@@ -30,7 +30,7 @@ python3 scripts/test-migration-runner.py
 scripts/release-check.sh
 ```
 
-See `docs/PHASE7_OPERATIONS.md` for deployment requirements and release criteria, and `db/README.md` for database setup (when the full database source tree is present).
+See `docs/PHASE7_OPERATIONS.md` for deployment requirements and release criteria.
 
 ## License
 
