@@ -1,0 +1,22 @@
+const subscription = @import("../src/core/subscription.zig");
+const price_guard = @import("../src/security/price_guard.zig");
+const audit = @import("../src/security/audit.zig");
+const scheduler = @import("../src/scheduler/bounded.zig");
+
+test "subscription model tests" { _ = subscription; }
+test "price guard tests" { _ = price_guard; }
+test "audit safety tests" { _ = audit; }
+test "bounded scheduler module is part of the test build" { _ = scheduler; }
+test "account metadata module" { _ = @import("../src/core/account.zig"); }
+test "account registry module" { _ = @import("../src/core/registry.zig"); }
+test "renewal verification module" { _ = @import("../src/core/renewal.zig"); }
+test "workflow state machine module" { _ = @import("../src/core/workflow.zig"); }
+test "idempotency journal module" { _ = @import("../src/core/idempotency.zig"); }
+test "API transport contracts module" { _ = @import("../src/api/contracts.zig"); }
+test "request policy module" { _ = @import("../src/security/request_policy.zig"); }
+test "metadata snapshot store module" { _ = @import("../src/storage/snapshot.zig"); }
+test "SurrealDB transport module" { _ = @import("../src/storage/surrealdb.zig"); }
+test "SurrealDB repository module" { _ = @import("../src/storage/repository.zig"); }
+test "transactional SurrealDB workflow repository tests" { _ = @import("../src/storage/workflow_repository.zig"); }
+test "Phase 7 recovery policy" { _ = @import("../src/core/recovery_policy.zig"); }
+test "Phase 7 safe diagnostics" { _ = @import("../src/security/safe_diagnostics.zig"); }
